@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+import csv
+
+def openCSV(file):
+	with open(file) as fh:
+		rd = csv.DictReader(fh, delimiter=',') 
+		for row in rd:
+			print(row)
+
+
+def main():
+	file = 'munro.csv'
+ 
+	openCSV(file)
+ 
+ 
+if __name__ == '__main__':
+	main()
