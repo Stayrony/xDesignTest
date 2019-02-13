@@ -2,17 +2,35 @@
 
 import csv
 
-def openCSV(file):
-	with open(file) as fh:
-		rd = csv.DictReader(fh, delimiter=',') 
-		for row in rd:
-			print(row)
+d = []
 
+def openCSV(file):
+	with open(file) as f:
+		reader = csv.DictReader(f, delimiter=',') 
+		for row in reader:
+			d.append(row)
+
+def checkCategory(category):
+	if category == "MUN":
+		return "Munro"
+	else:
+		return "Munro Top"
+
+def printResult(munro):
+	#name, height in meters, hill category and grid reference 
+	print "Name: "+munro['Name'] + " | Height(m): " + munro['Height (m)'] + "m | Category: " + checkCategory(munro['Post 1997']) + " | Grid Reference: " + munro['Grid Ref']
+
+def munroById(id):
+	for munro in d:
+		if munro['Running No'] == str(id):
+			printResult(munro)
+		
 
 def main():
 	file = 'munro.csv'
- 
+	
 	openCSV(file)
+	munroById(1)
  
  
 if __name__ == '__main__':
